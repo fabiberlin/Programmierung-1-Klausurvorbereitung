@@ -8,8 +8,14 @@ public class GameArray {
 
     private Game[] gameArray;
 
+    /**
+     * Constructor
+     * @param nrOfGames
+     */
     public GameArray(int nrOfGames) {
+        // initialise Array
         this.gameArray = new Game[nrOfGames];
+        // for each element in Array create a new Game
         for (int i = 0; i < gameArray.length; i++) {
             gameArray[i] = new Game();
         }
@@ -22,10 +28,15 @@ public class GameArray {
     }
 
     public void printWinner(int[] nrOfThrows) {
+        // setting min value to a big number
         int min = Integer.MAX_VALUE;
         int indexOfBestPlayer = 0;
+
+        // foreach element in array
         for (int i = 0; i < nrOfThrows.length; i++) {
+            // is the current value in array smaller than the actual minimum?
             if (nrOfThrows[i] < min) {
+                // yes - save index and update the current minimum
                 indexOfBestPlayer = i;
                 min = nrOfThrows[i];
             }
@@ -34,8 +45,12 @@ public class GameArray {
     }
 
     public void playGame(int target) {
+        // initialise array with same length as gameArray
         int[] nrOfThrows = new int[gameArray.length];
+
+        // foreach Game
         for (int i = 0; i < gameArray.length; i++) {
+            // throw and save number of trials
             int num = gameArray[i].throwUntilTarget(target);
             nrOfThrows[i] = num;
         }
